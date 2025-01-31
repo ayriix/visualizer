@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lin equa</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"
+    />
+  </head>
+  <body>
+    <div class="controls">
+      <div class="file-controls">
+        <label for="fileInput" class="file-input-label">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M19 13v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-5h2v5h10v-5h2zm-7-9l5 5h-4v6h-2V9H7l5-5z"
+            />
+          </svg>
+          Select audio
+        </label>
+        <input
+          type="file"
+          id="fileInput"
+          class="file-input"
+          accept="audio/mp3"
+          multiple
+        />
+        <!-- <button id="loadUrlButton" disabled>
+          <i class="fas fa-link"></i>URL
+        </button> -->
+        <div class="color-picker-container">
+          <button id="colorPickerButton" class="button">
+            <i class="fas fa-palette"></i>
+            <span id="colorPreview" style="background-color: #fff"></span>
+          </button>
+          <input type="text" id="visualizerColorInput" hidden />
+        </div>
+      </div>
+      <div class="button-container">
+        <button class="button" id="prevTrackButton">
+          <i class="fas fa-step-backward"></i>
+        </button>
+        <button class="button" id="pauseButton">
+          <i class="fas fa-pause"></i>
+        </button>
+        <button class="button" id="playButton">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="button" id="stopButton">
+          <i class="fas fa-stop"></i>
+        </button>
+        <button class="button" id="nextTrackButton">
+          <i class="fas fa-step-forward"></i>
+        </button>
+      </div>
+      <div class="button-container" id="secondary-buttons">
+        <button class="button" id="repeatButton">
+          <i class="fas fa-redo"></i>
+        </button>
+        <div class="speed-control-container">
+          <label for="speedControl">Speed:</label>
+          <div class="custom-slider">
+            <div class="slider-track"></div>
+            <div class="slider-thumb"></div>
+          </div>
+          <span id="speedValue">1</span>
+        </div>
+      </div>
+    </div>
+    <div class="equalizer">
+      <div>
+        <label for="gain0" class="gain-label">62.5 Hz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue0">0 dB</span>
+      </div>
+      <div>
+        <label for="gain1" class="gain-label">125 Hz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue1">0 dB</span>
+      </div>
+      <div>
+        <label for="gain2" class="gain-label">250 Hz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue2">0 dB</span>
+      </div>
+      <div>
+        <label for="gain3" class="gain-label">500 Hz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue3">0 dB</span>
+      </div>
+      <div>
+        <label for="gain4" class="gain-label">1 kHz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue4">0 dB</span>
+      </div>
+      <div>
+        <label for="gain5" class="gain-label">2 kHz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue5">0 dB</span>
+      </div>
+      <div>
+        <label for="gain6" class="gain-label">4 kHz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue6">0 dB</span>
+      </div>
+      <div>
+        <label for="gain7" class="gain-label">8 kHz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue7">0 dB</span>
+      </div>
+      <div>
+        <label for="gain8" class="gain-label">16 kHz:</label>
+        <div class="custom-slider">
+          <div class="slider-track"></div>
+          <div class="slider-thumb"></div>
+        </div>
+        <span id="gainValue8">0 dB</span>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div id="timeDisplay">0:00 / 0:00</div>
+    <div class="track-list-container">
+      <button id="toggleTrackList" class="button">
+        <i class="fas fa-list"></i>
+      </button>
+      <p class="playlist-title" id="playlistTitle" contenteditable="true">
+        My Playlist
+      </p>
+      <ul class="track-list" id="trackList">
+        <li id="emptyMessage" class="empty-message">Nothing found 😢</li>
+      </ul>
+    </div>
+    <div class="canvas-container">
+      <canvas id="canvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+  </body>
+</html>
